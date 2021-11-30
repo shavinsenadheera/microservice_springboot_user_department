@@ -18,23 +18,14 @@ public class UserService {
     private RestTemplate restTemplate;
 
     public User saveUser(User user) {
-        log.info("Inside the store in UserService");
         return userRepository.save(user);
     }
-
     public ResponseTemplateVO getUserWithDepartment(Long userId) {
-        log.info("1 step {}", userId);
         ResponseTemplateVO responseTemplateVO = new ResponseTemplateVO();
-        log.info("2 step");
         User user = userRepository.findById(userId).orElse(null);
-        log.info("3 step {}", user);
-        assert user != null;
-        log.info("4 step");
         Department department = restTemplate.getForObject("http://DEPARTMENT-SERVICE/api/v1/departments/" + user.getDepartmentId(), Department.class);
-        log.info("5 step");
         responseTemplateVO.setUser(user);
         responseTemplateVO.setDepartment(department);
-
         return responseTemplateVO;
     }
 }
