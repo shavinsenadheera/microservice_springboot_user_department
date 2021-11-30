@@ -3,7 +3,10 @@
 ![Getting Started](./microservicearchitecture.png)
 
 ## Simple spring boot project using,
-- H2 Database
-- JPA
 - Eureka Server
 - Eureka Client
+- Hystrix
+- Hystrix Dashboard
+- Resilience4j
+- H2 Database
+- JPA
