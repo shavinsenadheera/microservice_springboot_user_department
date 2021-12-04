@@ -16,9 +16,4 @@ public class HystrixDashboardApplication {
     public static void main(String[] args) {
         SpringApplication.run(HystrixDashboardApplication.class, args);
     }
-    @Bean
-    public ServletRegistrationBean servletRegistration() {
-        ServletRegistrationBean registration = new ServletRegistrationBean(new HystrixMetricsStreamServlet(), "/hystrix.stream");
-        return registration;
-    }
 }

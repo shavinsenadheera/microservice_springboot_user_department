@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "hystrix.command.getResult.metrics.rollingStats",
+      "type": "java.lang.String",
+      "description": "Description for hystrix.command.getResult.metrics.rollingStats."
+  }
+] }

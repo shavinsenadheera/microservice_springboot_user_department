@@ -15,7 +15,7 @@ spring:
             - name: CircuitBreaker
               args:
                 name: USER-SERVICE
-                fallbackUri: forward:/userServiceFallBack
+                fallbackuri: forward:/userServiceFallBack
         - id: DEPARTMENT-SERVICE
           uri: lb://DEPARTMENT-SERVICE
           predicates:
@@ -24,7 +24,7 @@ spring:
             - name: CircuitBreaker
               args:
                 name: DEPARTMENT-SERVICE
-                fallbackUri: forward:/departmentFallBack
+                fallbackuri: forward:/departmentFallBack
 
 ##Resilence4J Configurations
 #resilience4j:
@@ -51,15 +51,6 @@ spring:
 #        waitDurationInOpenState: 5s
 #        slidingWindowType: COUNT_BASED
 
-#Hystrix Configurations
-hystrix:
-  command:
-    fallbackcmd:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 4000
-
 #Actuator Configurations
 management:
   health:
@@ -68,7 +59,20 @@ management:
   endpoints:
     web:
       exposure:
-        include: hystrix.stream, health, info
+        include: "*"
+
+#Hystrix Configurations
+hystrix:
+  USER-SERVICE:
+    execution:
+      isolation:
+        thread:
+          timeoutInMilliseconds: 10000
+  DEPARTMENT-SERVICE:
+    execution:
+      isolation:
+        thread:
+          timeoutInMilliseconds: 10000
 
 eureka:
   client:
